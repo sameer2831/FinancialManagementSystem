@@ -6,6 +6,8 @@ import Register from './components/Register';
 import ForgotPassword from './components/ForgotPassword';
 import ResetPassword from './components/ResetPassword';
 import UserDashboard from './pages/UserDashboard';
+import IncomeComponent from './components/GetIncome';
+import Transactions from './pages/Transactions';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/user-dashboard" element={<UserDashboard />} />
+        <Route path="/user-income" element={<IncomeComponent/>}/>
+        <Route path="/user-transactions" element={<Transactions />}/>
       </Routes>
     </Router>
   );

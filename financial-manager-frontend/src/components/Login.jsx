@@ -12,11 +12,13 @@ export default function Login() {
     e.preventDefault();
     try {
       const response = await api.post('/user/login', credentials);
-      const { token, username } = response.data;
+      const { token } = response.data;
+      console.log('Login response:', response.data);
+
 
       // Save token and username
       localStorage.setItem('token', token);
-      localStorage.setItem('username', username); 
+      localStorage.setItem('username', credentials.username); 
 
       setError('');
       navigate('/user-dashboard'); // Redirect after successful login

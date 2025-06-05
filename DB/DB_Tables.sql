@@ -61,3 +61,36 @@ CREATE TABLE StockHoldings (
     FOREIGN KEY (StockId) REFERENCES Stocks(StockId)
 );
 
+CREATE TABLE Income (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Amount DECIMAL(10,2) NOT NULL,
+    Category VARCHAR(50) NOT NULL,  -- e.g., Salary, Business, Investment
+    Description NVARCHAR(250),
+    Date DATETIME NOT NULL DEFAULT GETUTCDATE(),
+    UserId INT NOT NULL,
+    FOREIGN KEY (UserId) REFERENCES Users(Id)
+);
+
+
+CREATE TABLE Expense (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    Amount DECIMAL(10,2) NOT NULL,
+    Category VARCHAR(50) NOT NULL,  -- e.g., Rent, Groceries, Utilities
+    Description NVARCHAR(250),
+    Date DATETIME NOT NULL DEFAULT GETUTCDATE(),
+    UserId INT NOT NULL,
+    FOREIGN KEY (UserId) REFERENCES Users(Id)
+);
+
+-- Income Category Constraint Example
+ALTER TABLE Income
+ADD CONSTRAINT CK_Income_Category CHECK (
+    Category IN ('Salary', 'Business', 'Investment', 'Freelancing', 'RentalIncome', 'Refunds','Interests', 'Gifts', 'Others')
+);
+
+-- Expense Category Constraint Example
+ALTER TABLE Expense
+ADD CONSTRAINT CK_Expense_Category CHECK (
+    Category IN ('Rent', 'Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Dining',
+                 'Healthcare', 'Insurance', 'Education', 'Travel', 'Shopping', 'Subscriptions', 'Other')
+);

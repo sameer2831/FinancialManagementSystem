@@ -1,6 +1,6 @@
 ﻿using FinancialManagementSystem.Models;
 
-namespace FinancialManagementSystem.DAL
+namespace FinancialManagementSystem.DAL.RepositoryServices
 {
     public interface IUserRepository
     {
