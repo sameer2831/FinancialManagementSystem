@@ -6,6 +6,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
+using FinancialManagementSystem.BLL;
+
 
 namespace FinancialManagementSystem.Controllers
 {
@@ -15,11 +18,13 @@ namespace FinancialManagementSystem.Controllers
     {
         private readonly IUserService _userService;
         private readonly IConfiguration _configuration;
+        private readonly ITokenBlacklistService _tokenBlacklistService;
 
-        public UserController(IUserService userService, IConfiguration configuration)
+        public UserController(IUserService userService, IConfiguration configuration, ITokenBlacklistService tokenBlacklistService)
         {
             _userService = userService;
             _configuration = configuration;
+            _tokenBlacklistService = tokenBlacklistService;
         }
 
         [HttpPost("register")]
@@ -88,6 +93,19 @@ namespace FinancialManagementSystem.Controllers
                 return Ok("Password reset successful.");
             return BadRequest("Invalid or expired token.");
         }
+
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            var token = Request.Headers["Authorization"].ToString().Replace("Bearer ", "");
+            var expiry = TimeSpan.FromMinutes(60); // Match token lifespan
+
+            await _tokenBlacklistService.BlacklistTokenAsync(token, expiry);
+
+            return Ok(new { message = "Logged out successfully." });
+        }
+
 
     }
 }

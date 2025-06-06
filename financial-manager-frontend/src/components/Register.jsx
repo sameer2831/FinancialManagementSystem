@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
+//import logo from '../assets/goldlogo.png'
+import logo from '../assets/logoWM.png'
 
 export default function Register() {
   const [form, setForm] = useState({
@@ -31,8 +33,18 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100 text-gray-900">
       <div className="flex w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden">
         {/* Left Side - Branding/Image */}
-        <div className="w-1/2 bg-gradient-to-br from-emerald-600 to-emerald-800 flex flex-col items-center justify-center p-8 text-white">
-          <h1 className="text-4xl font-bold mb-4">WealthMitra</h1>
+        <div className="w-1/2 bg-gradient-to-br from-emerald-400 to-emerald-600 flex flex-col items-center justify-center p-8 text-white">
+        <Link to="/">
+          <div className="inline-block p-2 bg-white bg-opacity-0 rounded">
+            <img
+              src={logo}
+              alt="WealthMitra Logo"
+              className="h-40 w-auto"
+            />
+          </div>
+          </Link>
+            <h1 className="text-4xl font-bold mb-2">WealthMitra</h1>
+          
           <p className="text-center text-lg">Manage your finances with ease. Register now to get started!</p>
         </div>
 

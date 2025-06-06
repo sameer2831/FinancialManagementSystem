@@ -2,6 +2,7 @@ import { useState } from 'react';
 import api from '../services/api';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom'; 
+import logo from '../assets/logo-transparent.png'
 
 export default function Login() {
   const [credentials, setCredentials] = useState({ username: '', password: '' });
@@ -30,7 +31,15 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-50 to-emerald-100">
       <div className="bg-white p-10 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-3xl font-extrabold text-center text-emerald-700 mb-6">WealthMitra</h2>
+        <div className="flex justify-center mb-6">
+          <Link to="/">
+            <img
+              src={logo} 
+              alt="WealthMitra Logo"
+              className="h-16 w-auto cursor-pointer"
+            />
+          </Link>
+        </div>
         <p className="text-center text-gray-600 mb-6">Login to your account</p>
 
         <form onSubmit={handleLogin} className="space-y-5">

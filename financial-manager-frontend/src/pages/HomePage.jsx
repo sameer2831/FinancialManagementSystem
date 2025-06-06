@@ -6,13 +6,20 @@ import About from '../components/About';
 import Contact from '../components/Contact';
 import Solutions from '../components/Solutions';
 import Blogs from '../components/Blogs';
+import logo from '../assets/logo-text.png';
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-emerald-100 text-gray-900 font-sans">
       {/* Navbar */}
       <header className="flex flex-wrap justify-between items-center px-10 py-6 sticky top-0 bg-white shadow-md z-50">
-        <h1 className="text-2xl font-extrabold text-emerald-700">WealthMitra</h1>
+        <Link to="/" className="flex items-center">
+          <img
+            src={logo}
+            alt="WealthMitra Logo"
+            className="h-10 w-auto drop-shadow-sm"
+          />
+        </Link>
         
         <nav className="flex gap-6 text-sm mt-4 md:mt-0">
           <a href="#home" className="hover:text-emerald-600 hover:font-bold transition-all duration-300 ">Home</a>
