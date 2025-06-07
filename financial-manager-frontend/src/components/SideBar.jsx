@@ -16,6 +16,7 @@ export default function Sidebar() {
           <NavLink to="/user-dashboard" className={linkClasses}>Dashboard</NavLink>
           <NavLink to="/user-income" className={linkClasses}>Income</NavLink>
           <NavLink to="/user-expense" className={linkClasses}>Expenses</NavLink>
+          <NavLink to="/user-budget" className={linkClasses}>Budget</NavLink>
           <NavLink to="/user-transactions" className={linkClasses}>Transactions</NavLink>
           <NavLink to="/reports" className={linkClasses}>Reports</NavLink>
           <NavLink to="/settings" className={linkClasses}>Settings</NavLink>

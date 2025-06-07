@@ -94,3 +94,13 @@ ADD CONSTRAINT CK_Expense_Category CHECK (
     Category IN ('Rent', 'Groceries', 'Utilities', 'Transportation', 'Entertainment', 'Dining',
                  'Healthcare', 'Insurance', 'Education', 'Travel', 'Shopping', 'Subscriptions', 'Other')
 );
+
+CREATE TABLE Budgets (
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    UserId INT NOT NULL,
+    Amount DECIMAL(18, 2) NOT NULL,
+    Category NVARCHAR(100) NOT NULL,
+    PeriodType NVARCHAR(20) NOT NULL, -- Expected values: 'Monthly', 'Yearly'
+    Period DATE NOT NULL,
+    CONSTRAINT FK_Budgets_Users FOREIGN KEY (UserId) REFERENCES Users(Id)
+);

@@ -12,6 +12,8 @@ namespace FinancialManagementSystem.DAL
         public DbSet<Income> Income { get; set; }
         public DbSet<Expense> Expense { get; set; }
 
+        public DbSet<Budget> Budgets { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder); // Call base first or last

@@ -103,7 +103,7 @@ export default function UserDashboard() {
             <PieChartWrapper data={incomeData} />
           </ChartCard>
           <ChartCard title="Expense Breakdown" color="text-red-500">
-            <PieChartWrapper data={expenseData} />
+            <ExpensePieChartWrapper data={expenseData} />
           </ChartCard>
           <ChartCard title="Monthly Trends" color="text-emerald-700">
             <LineChartWrapper data={trendData} />
@@ -179,7 +179,18 @@ const PieChartWrapper = ({ data }) => (
     </PieChart>
   </ResponsiveContainer>
 );
-
+const ExpensePieChartWrapper = ({ data }) => (
+  <ResponsiveContainer width="100%" height={250}>
+    <PieChart>
+      <Pie data={data.map(d => ({ name: d.category, value: d.total }))} dataKey="value" nameKey="name" outerRadius={80} label>
+        {data.map((_, index) => (
+          <Cell key={`cell-${index}`} fill={['#FF9C1A', '#EC1B09', '#f87171', '#facc15', '#10b981', '#3b82f6', '#8b5cf6', '#ec4899'][index % 5]} />
+        ))}
+      </Pie>
+      <RechartsTooltip />
+    </PieChart>
+  </ResponsiveContainer>
+);
 const LineChartWrapper = ({ data }) => (
   <ResponsiveContainer width="100%" height={250}>
     <LineChart data={data}>

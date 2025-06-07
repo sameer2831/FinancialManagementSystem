@@ -4,6 +4,7 @@ using FinancialManagementSystem.DAL;
 using FinancialManagementSystem.DAL.RepositoryServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using StackExchange.Redis;
 using System.Text;
@@ -13,7 +14,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.EnableSensitiveDataLogging();
+});
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IIncomeRepository, IncomeRepository>();
@@ -22,6 +26,8 @@ builder.Services.AddScoped<ISummaryService, SummaryService>();
 builder.Services.AddScoped<ITransactionService, TransactionService>();
 builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect("localhost"));
 builder.Services.AddScoped<ITokenBlacklistService, TokenBlacklistService>();
+builder.Services.AddScoped<IBudgetRepository, BudgetRepository>();
+builder.Services.AddScoped<IBudgetService, BudgetService>();
 
 builder.Services.AddScoped<IExpenseRepository, ExpenseRepository>();
 builder.Services.AddScoped<IExpenseService, ExpenseService>();
